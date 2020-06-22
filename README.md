@@ -19,6 +19,10 @@ par(mfrow=c(2,2))
 BExPlot(AHF.normal)
 BExPlot(AHF.carrier)
 
+# update 22/07/2020
+# type "exactBExPlot(AHF.normal)" for the BExPlot with EXACT regions
+# end un update
+
 AHF.carrier <-cbind(AHFactivity[gr=="carrier"],AHFactivity.1[gr=="carrier"])
 plot(AHF.carrier,pch=3)
 points(x=mean(AHF.carrier[,1]),y=mean(AHF.carrier[,2]),pch=16)
