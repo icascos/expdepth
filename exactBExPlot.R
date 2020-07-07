@@ -10,7 +10,7 @@ conf.level <- function(beta=.95,n=100) {
 }
 
 
-exactBExPlot <- function(data,nlines=1000,conf=0.95) {
+exactBExPlot <- function(data,conf=0.95) {
   plot(data,type="n",main="BExPlot",xlab="X",ylab="Y")
   av <- colMeans(data)
   bag <- exactexp(data,alpha=.15)
@@ -44,7 +44,7 @@ AHF.normal <-cbind(AHFactivity[gr=="normal"],AHFactivity.1[gr=="normal"])
 exactBExPlot(AHF.normal)
 
 AHF.carrier <-cbind(AHFactivity[gr=="carrier"],AHFactivity.1[gr=="carrier"])
-exactBExPlot(AHF.carrier,nlines=500,conf=0.99)
+exactBExPlot(AHF.carrier,conf=0.99)
 
 # Run only if interested in testing the complexity of the algorithm
 
