@@ -1,7 +1,3 @@
-# Computes the EXACT expectile regions the BExPlot is compused of
-# Uploaded in 22 Jun 2020. Makes use of exactexp (included in May 2020)
-# uses the structure of BExPlot (included in May 2020)
-
 source("https://raw.githubusercontent.com/icascos/expdepth/master/exactexp.R")
 
 conf.level <- function(beta=.95,n=100) {
