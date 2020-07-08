@@ -33,14 +33,14 @@ exactBExPlot <- function(data,conf=0.95) {
 
 # Some examples
 
-require(ddalpha)
-data(hemophilia)
-attach(hemophilia)
-AHF.normal <-cbind(AHFactivity[gr=="normal"],AHFactivity.1[gr=="normal"])
-exactBExPlot(AHF.normal)
+#require(ddalpha)
+#data(hemophilia)
+#attach(hemophilia)
+#AHF.normal <-cbind(AHFactivity[gr=="normal"],AHFactivity.1[gr=="normal"])
+#exactBExPlot(AHF.normal)
 
-AHF.carrier <-cbind(AHFactivity[gr=="carrier"],AHFactivity.1[gr=="carrier"])
-exactBExPlot(AHF.carrier,conf=0.99)
+#AHF.carrier <-cbind(AHFactivity[gr=="carrier"],AHFactivity.1[gr=="carrier"])
+#exactBExPlot(AHF.carrier,conf=0.99)
 
 # Run only if interested in testing the complexity of the algorithm
 
