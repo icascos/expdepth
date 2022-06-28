@@ -1,4 +1,5 @@
 expdepth <- function(x,data){
+  if(min(chull(rbind(x,data)))==1) {return(0)}
   n <- nrow(data)
   # Step 1
   data <- t(t(data)-x)
