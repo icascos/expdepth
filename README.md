@@ -16,6 +16,7 @@ require(ddalpha)
 data(hemophilia)
 attach(hemophilia)
 AHF.normal <-cbind(AHFactivity[gr=="normal"],AHFactivity.1[gr=="normal"])
+AHF.carrier <-cbind(AHFactivity[gr=="carrier"],AHFactivity.1[gr=="carrier"])
 
 # approximate BExPlots
 par(mfrow=c(3,2))
@@ -26,7 +27,6 @@ BExPlot(AHF.carrier)
 exactBExPlot(AHF.normal)
 
 # exact expectile regions
-AHF.carrier <-cbind(AHFactivity[gr=="carrier"],AHFactivity.1[gr=="carrier"])
 plot(AHF.carrier,pch=3)
 points(x=mean(AHF.carrier[,1]),y=mean(AHF.carrier[,2]),pch=16)
 lines(exactexp(AHF.carrier))
