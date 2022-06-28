@@ -13,7 +13,7 @@ distexpdepth <- function(x,data,gtilde, sim=F){
   
   n <- nrow(data)
   data <- t(t(data)-x)
-  # Step 1
+  
   steps <- seq(from=1,to=0,length.out=n+1)
   w <- gtilde(steps[-(n+1)])-gtilde(steps[-1])
   
@@ -44,7 +44,6 @@ distexpdepth <- function(x,data,gtilde, sim=F){
   av.sum.neg <- colSums(w[rel.pos]*data[,1:2]*(side==-1))
   
   for(i in 1:nrow(ANG)) {
-    #compobar
     depth1 <- -(av.sum.neg[1]*cos(ANG[i,3]+pi/2)+av.sum.neg[2]*sin(ANG[i,3]+pi/2))/(av.sum.pos[1]*cos(ANG[i,3]+pi/2)+av.sum.pos[2]*sin(ANG[i,3]+pi/2))
     if(ANG[i,1]==ANG[i,2]) {
       k <- ANG[i,1]
@@ -74,7 +73,7 @@ distexpdepth <- function(x,data,gtilde, sim=F){
         av.sum.neg <- av.sum.neg+w[rel.pos[ANG[i,2]]]*data[ANG[i,2],1:2]
       }
     }
-    # Step 8
+
     depth2 <- -(av.sum.neg[1]*cos(ANG[i,3]+pi/2)+av.sum.neg[2]*sin(ANG[i,3]+pi/2))/(av.sum.pos[1]*cos(ANG[i,3]+pi/2)+av.sum.pos[2]*sin(ANG[i,3]+pi/2))
     depth <- max(depth,depth1,depth2)
     
