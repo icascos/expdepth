@@ -83,6 +83,6 @@ distexpdepth <- function(x,data,gtilde, sim=F){
       depth <- max(depth,depth1,depth2,1/depth1,1/depth2)
   }  
   
-  expdepthw <- 1/(1+depth)
+  distexpdepth <- 1/(1+depth)
   return(distexpdepth)
 }
