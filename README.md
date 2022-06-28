@@ -8,15 +8,17 @@ Copy and paste the piece of code below, which uses the `ddalpha` package in orde
 
 ```{r}
 source("https://raw.githubusercontent.com/icascos/expdepth/master/BExPlot.R")
+source("https://raw.githubusercontent.com/icascos/expdepth/master/exactBExPlot.R")
 source("https://raw.githubusercontent.com/icascos/expdepth/master/exactexp.R")
 source("https://raw.githubusercontent.com/icascos/expdepth/master/expdepth.R")
+source("https://raw.githubusercontent.com/icascos/expdepth/master/distexpdepth.R")
 require(ddalpha)
 data(hemophilia)
 attach(hemophilia)
 AHF.normal <-cbind(AHFactivity[gr=="normal"],AHFactivity.1[gr=="normal"])
 
 # approximate BExPlots
-par(mfrow=c(2,2))
+par(mfrow=c(3,2))
 BExPlot(AHF.normal)
 BExPlot(AHF.carrier)
 
@@ -33,12 +35,25 @@ lines(exactexp(AHF.carrier,alpha=0.05))
 lines(exactexp(AHF.carrier,alpha=0.4))
 
 # DD-plot for the expectile depth
-AHF <-rbind(AHF.normal,AHF.carrier)
-e1 <- vector(length=nrow(AHF))
-for(i in 1:nrow(AHF)) e1[i]<-expdepth(x=AHF[i,],data=AHF.normal)
-e2 <- vector(length=nrow(AHF))
-for(i in 1:nrow(AHF)) e2[i]<-expdepth(x=AHF[i,],data=AHF.carrier)
-plot(x=e1,y=e2,main="D-D plot AHF activy and AHF antigen",
-     xlab="Non-carrier depths",ylab="Carrier depths")
+X <- matrix(rnorm(100),ncol=2)
+X <- rbind(X,matrix(rnorm(4,mean=5),ncol=2))
+Y <- matrix(rnorm(100),ncol=2) 
+Y <- rbind(Y,matrix(rnorm(4,mean=-5),ncol=2))
+sim.data <-rbind(X,Y)
+e1 <- vector(length=nrow(sim.data))
+for(i in 1:length(e1)) e1[i]<-expdepth(x=sim.data[i,],data=X)
+e2 <- vector(length=nrow(sim.data))
+for(i in 1:length(e2)) e2[i]<-expdepth(x=sim.data[i,],data=Y)
+plot(x=e1,y=e2,main="D-D plot, expectile depth",
+     xlab="X",ylab="Y")
+abline(0,1,lty=2)
+
+# DD-plot for the distorted expectile depth (sigmoid distortion)
+ed1 <- vector(length=nrow(sim.data))
+for(i in 1:length(ed1)) ed1[i]<-distexpdepth(x=sim.data[i,],data=X,gtilde=sigmoid,sim=TRUE)
+ed2 <- vector(length=nrow(sim.data))
+for(i in 1:length(ed2)) ed2[i]<-distexpdepth(x=sim.data[i,],data=Y,gtilde=sigmoid,sim=TRUE)
+plot(x=ed1,y=ed2,main="D-D plot, distorted expectile depth, sigmoid",
+     xlab="X",ylab="Y")
 abline(0,1,lty=2)
 ```
